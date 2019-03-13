@@ -1,14 +1,33 @@
 <p id="notice"><%= notice %></p>
 
-<div>
-  <%= image_tag @post.image, align: "left", class: "img-fluid", id: "add-margin" if @post.image.attached? %>
-  <p>
+<div class="container bg-light" style="padding: 20px; border-radius: 5px;">
+  <%= image_tag @post.image, class: "img-fluid", id: "show-image" if @post.image.attached? %>
+  <p style="margin-top: 10px;">
     <%= @post.content %>
   </p>
 
-  <h3> Leave a reply </h3>
-  <%= render '/comments/form' %>
+  <p>
+    <strong>Author:</strong>
+    <%= @post.author %>
+  </p>
+  <%= link_to 'Edit', edit_post_path, class: "btn btn-warning" %>
+  <%= link_to 'Delete', post_path, method: :delete, class: "btn btn-danger" %>
 </div>
-
-<%= link_to 'Back', posts_path %> |
-<%= link_to 'Delete', post_path, method: :delete %>
+<hr>
+<div class="bg-light" style="padding: 10px; border-radius: 5px; margin-top: 20px;">
+<%= render '/comments/form' %>
+</div>
+<% if @comments.size > 0 %>
+  <h4 style="margin-top: 30px;"> Comments </h4>
+<% end %>
+<div class="row">
+  <% @comments.reverse.each do |comment| %>
+  <div class="card col-md-4" style="margin-bottom: 5px;" id="no-border">
+    <div class="card-body">
+      <b><%= comment.author %>:</b>
+      <%= comment.content %>
+      <%= link_to 'Delete', post_comment_path(post_id: @post.id, id: comment.id), method: :delete %>
+    </div>
+  </div>
+  <% end %>
+</div>
