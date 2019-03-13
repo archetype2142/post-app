@@ -1,0 +1,26 @@
+<p id="notice"><%= notice %></p>
+
+<div class="row" id="margin-b-10">
+  <p class="h1 col-sm-6">All Posts</p>
+  <span class="col-sm-6">
+    <%= link_to 'New Post', new_post_path, class: "btn btn-primary", id: "new-post-btn" %>
+  </span>
+</div>
+
+<div class="card-columns">
+  <% @posts.reverse.each do |post| %>
+    <div class="card" >
+      <a href=<%= post_path(post) %> class="btn btn-fix text-left">
+        <%= image_tag post.image, class: "card-img-top"  if post.image.attached? %>
+        <div class="card-body">
+          <p class="card-text"><%= truncate(post.content, length: 50) %></p>
+          <footer class="blockquote-footer">
+            <small class="text-muted">
+              <cite title="Source Title"><%= post.author %></cite>
+            </small>
+          </footer>
+        </div>
+      </a>
+    </div>
+  <% end %>
+</div>

@@ -1,0 +1,33 @@
+<div class="col-md-6">
+<%= form_with(model: post, local: true) do |form| %>
+  <% if post.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(post.errors.count, "error") %> prohibited this post from being saved:</h2>
+
+      <ul>
+      <% post.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.text_area :content, class: "form-control", rows: 3, placeholder: "What's on your mind?"%>
+  </div>
+
+  <div class="field">
+    <%= form.label :name %>
+    <%= form.text_field :author, class: "form-control", placeholder: "John Doe" %>
+  </div>
+  
+  <div class="field">
+    <%= form.label "Image for your post(optional)" %>
+    <%= form.file_field :image, type: "file", class: "form-control-file" %>
+  </div>
+  
+  <div class="actions" style="margin-top: 30px;">
+    <%= form.submit class: "btn btn-primary" %>
+  </div>
+<% end %>
+</div>

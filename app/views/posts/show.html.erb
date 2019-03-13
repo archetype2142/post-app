@@ -1,0 +1,14 @@
+<p id="notice"><%= notice %></p>
+
+<div>
+  <%= image_tag @post.image, align: "left", class: "img-fluid", id: "add-margin" if @post.image.attached? %>
+  <p>
+    <%= @post.content %>
+  </p>
+
+  <h3> Leave a reply </h3>
+  <%= render '/comments/form' %>
+</div>
+
+<%= link_to 'Back', posts_path %> |
+<%= link_to 'Delete', post_path, method: :delete %>
