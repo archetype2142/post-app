@@ -13,7 +13,13 @@
     
     <div class="card">
       <a href=<%= post_path(post) %> class="btn btn-fix text-left">
-        <%= image_tag post.image, class: "card-img-top"  if post.image.attached? %>
+        <% if post.image.attached? %>
+          <% if post.image.previewable? %>
+            <%= image_tag post.image.preview(resize: "1000x1000>"), class: "card-img-top" %>
+          <% else %>
+            <%= image_tag post.image, class: "card-img-top" %>
+          <% end %>
+        <% end %>
         <div class="card-body">
           <p class="card-text"><%= truncate(post.content, length: 50) %></p>
           <footer class="blockquote-footer">
