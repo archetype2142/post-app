@@ -3,7 +3,7 @@
 <div class="container bg-light" style="padding: 20px; border-radius: 5px;">
   <% if @post.image.attached? %>
     <% if @post.image.previewable? %>
-      <video preload controls>
+      <video preload controls height="auto" class="embed-responsive embed-responsive-16by9">
         <source src=<%="#{rails_blob_path(@post.image)}"%> >
         <source src=<%="#{rails_blob_path(@post.image)}"%> >
       </video>
