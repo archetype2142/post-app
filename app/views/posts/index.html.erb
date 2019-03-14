@@ -2,6 +2,7 @@
 
 <div class="row" id="margin-b-10">
   <p class="h1 col-sm-6">All Posts</p>
+  
   <span class="col-sm-6">
     <%= link_to 'New Post', new_post_path, class: "btn btn-primary", id: "new-post-btn" %>
   </span>
@@ -9,7 +10,8 @@
 
 <div class="card-columns">
   <% @posts.reverse.each do |post| %>
-    <div class="card" >
+    
+    <div class="card">
       <a href=<%= post_path(post) %> class="btn btn-fix text-left">
         <%= image_tag post.image, class: "card-img-top"  if post.image.attached? %>
         <div class="card-body">
@@ -22,5 +24,6 @@
         </div>
       </a>
     </div>
+    
   <% end %>
 </div>
