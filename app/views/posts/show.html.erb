@@ -1,13 +1,15 @@
 <p id="notice"><%= notice %></p>
 
 <div class="container bg-light" style="padding: 20px; border-radius: 5px;">
-  <% if @post.image.previewable? %>
-    <video preload controls>
-      <source src=<%="#{rails_blob_path(@post.image)}"%> >
-      <source src=<%="#{rails_blob_path(@post.image)}"%> >
-    </video>
-  <% else %>
-    <%= image_tag @post.image, class: "card-img-top" %>
+  <% if @post.attached? %>
+    <% if @post.image.previewable? %>
+      <video preload controls>
+        <source src=<%="#{rails_blob_path(@post.image)}"%> >
+        <source src=<%="#{rails_blob_path(@post.image)}"%> >
+      </video>
+    <% else %>
+      <%= image_tag @post.image, class: "card-img-top" %>
+    <% end %>
   <% end %>
   
   <p style="margin-top: 10px;">
