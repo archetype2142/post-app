@@ -52,6 +52,20 @@ class PostsController < ApplicationController
     end
   end
 
+  def disable_comments
+    @post = Post.find(params[:id])
+    @post.disable!
+
+    redirect_to @post
+  end
+
+  def enable_comments
+    @post = Post.find(params[:id])
+    @post.enable!
+
+    redirect_to @post
+  end
+
   private
     def set_post
       @post = Post.find(params[:id])
