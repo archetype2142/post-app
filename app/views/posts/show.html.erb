@@ -1,7 +1,7 @@
 <p id="notice"><%= notice %></p>
 
 <div class="container bg-light" style="padding: 20px; border-radius: 5px;">
-  <% if @post.attached? %>
+  <% if @post.image.attached? %>
     <% if @post.image.previewable? %>
       <video preload controls>
         <source src=<%="#{rails_blob_path(@post.image)}"%> >
